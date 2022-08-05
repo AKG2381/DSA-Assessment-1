@@ -193,12 +193,12 @@ class Stack:
         return self.arr.pop()
 def pre_to_inf(prefixEx):
     stack=Stack()
-    l=prefixEx[::-1]
-    for i in l:
-        if i not in "+-/*^()":
-            stack.push(i)
+    l=prefixEx
+    for i in range(-1,-len(l)-1,-1):
+        if l[i] not in "+-/*^()":
+            stack.push(l[i])
         else:
-            x="("+ stack.pop() + i + stack.pop() +")"
+            x="("+ stack.pop() + l[i] + stack.pop() +")"
             stack.push(x)
     return stack.pop()
 pre_to_inf("*-A/BC-/AKL")          
@@ -212,54 +212,21 @@ pre_to_inf("*-A/BC-/AKL")
 # In[53]:
 
 
-class Stack :
-    def __init__(self):
-        self.arr = []
-    def push(self,value):
-        self.arr.append(value)
-    def pop(self):
-        if len(self.arr)==0:
-            print("Stack is empty")
-            return
-        value=self.arr.pop()
-        return value
-    def peek(self):
-        if len(self.arr) == 0:
-            print("Stack is empty !!")
-            return
-        return self.arr[len(self.arr)-1]
-
-    def check_same(self,i,j):
-        if j == '{' and i == '}':
-            return 1
-        elif j == '[' and i == ']':
-            return 1
-        elif j == '(' and i == ')':
-            return 1
-        return 0
-
-
-    def parenthesis_balanced(self,str):
-        for i in str:
-            if i == '{' or i == '[' or i == '(':
-                self.push(i)
-            elif i == '}' or i == ']' or i == ')':
-                if len(self.arr) == 0:
-                    return 0
-                value = self.peek()
-
-                if(self.check_same(i,value)):
-                    self.pop()
-                else:
-                     return 0
-        if len(self.arr) == 0:
-               return 1
-        return 0
-s=Stack()
-if s.parenthesis_balanced("()[({})]"):
-    print("balanced")
-else:
-    print("not balanced ")
+def Balanced(s):
+    stack=[]
+    
+    for i in range(len(s)):
+        if s[i]=='(' or s[i]=='{' or s[i]=='[':
+            stack.append(s[i])
+        elif len(stack)!=0 and ((stack[-1]=='(' and s[i]==')') or (stack[-1]=='[' and s[i]==']') or (stack[-1]=='{' and s[i]=='}')):
+            stack.pop()
+        else:
+            return "NO"
+    if  len(stack)==0:
+        return "Balanced"
+    else:
+        return "Not Balanced"
+Balanced("{()[({})]}")
 
 
 # # Q9. Write a program to reverse a stack.
@@ -274,21 +241,22 @@ class Stack :
     def push(self,data):
         self.arr.append(data)
     def pop(self):
+        if len(self.arr)==0:
+            print("stack is empty")
+            return
         return self.arr.pop()
-    def insert(self,data):
-        self.arr.insert(0,data)
-        
-    def reverse(self):
-        self.arr=self.arr[::-1]
-        return self.arr
-        
+    
             
 s=Stack()
-s.push(30)
+def reverse(s):
+        for i in range(len(s.arr)):
+            print(s.pop())
+        return 
 s.push(10)
 s.push(20)
+s.push(30)
 s.push(40)
-s.reverse()
+reverse(s)
 
 
 # # Q10. Write a program to find the smallest number using a stack.
@@ -303,8 +271,6 @@ class Stack :
         self.arr.append(data)
     def pop(self):
         return self.arr.pop()
-    def insert(self,data):
-        self.arr.insert(0,data)
         
     def smallest(self):
         self.arr.sort()
