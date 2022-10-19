@@ -29,7 +29,6 @@
 # In[45]:
 def countPsubs(i, j, s):
     if (i > j):
-        #    Invalid substring.
         return 0
     if (i == j):
         return 1
