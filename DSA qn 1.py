@@ -24,7 +24,39 @@
 # 
 # >3 0 2 
 
-# In[ ]:
+# In[44]:
+
+# creating a graph
+n=int(input("Enter the number of elemnts:: "))
+graph=[]
+for i in range(n):
+    graph.append(list(map(int,input("enter two elements as space seperated ").split())))
+x=[]                                        # getting list of all vertex
+for i in graph:
+    x.extend(i)
+vertex=list(set(x))
+# print(vertex)
+
+d = {}                                       # creating the graph as a dictionary from the user inout nested list
+for a, b in graph:
+    d.setdefault(a, []).append(b)
+# print(d)
+for v in vertex:
+        if v not in d:
+#             print(v)
+            d[v] = []
+# print(d)
+visited=set()
+root=int(input("enter the root node"))        # starting node for trversing
+def DFS(visited,graph,root):                  # implementing depth-first-search (DFS)
+    
+    if root not in visited:
+        print(root,end=' ')
+        visited.add(root)
+#         print(visited)
+        for i in set(d[root])-visited:
+            DFS(visited,graph,i) 
+DFS(visited,graph,root)
 
 
 
