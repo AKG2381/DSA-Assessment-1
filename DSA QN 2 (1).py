@@ -26,36 +26,19 @@
 # 
 # >For string 'abcdef' palindromic subsequence are : "a" ,"b", "c" ,"d","e","f"
 
-# In[3]:
-
-
-"""
-    Time Complexity: O(2^N)
-    Space Complexity: O(N)
-
-    where 'N' is the length of the string.
-"""
-
-
-#    Returns the number of palindromic subsequences in the substring [i: j] of string ‘s’.
+# In[45]:
 def countPsubs(i, j, s):
-
     if (i > j):
         #    Invalid substring.
         return 0
-
     if (i == j):
-        #    Every single character in the string is a palindrome itself.
         return 1
-
     elif (s[i] == s[j]):
         return (1 + countPsubs(i + 1, j, s) + countPsubs(i, j - 1, s))
     else:
         return ((countPsubs(i + 1, j, s) + countPsubs(i, j - 1, s))- countPsubs(i + 1, j - 1, s))
 def countPsubs1(s):
-
     return countPsubs(0, len(s) - 1, s)
-
 countPsubs1("abcde")    
         
     
