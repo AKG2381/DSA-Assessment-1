@@ -26,7 +26,8 @@
 
 # In[44]:
 
-# creating a graphn=int(input("Enter the number of elemnts:: "))
+# creating a graph
+n=int(input("Enter the number of elemnts:: "))
 graph=[]
 for i in range(n):
     graph.append(list(map(int,input("enter two elements as space seperated ").split())))
