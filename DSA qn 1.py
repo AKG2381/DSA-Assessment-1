@@ -64,8 +64,8 @@ def Depth_First_Sesrch(visited,graph, root):
     if root not in visited:
         print (root,end=' ')
         visited.add(root)
-        for neighbour in d_graph[root]:
-            Depth_First_Sesrch(visited, graph, neighbour)
+        for node in d_graph[root]:
+            Depth_First_Sesrch(visited, graph, node)
 
 
 Depth_First_Sesrch(visited_root,d_graph, root)
