@@ -26,37 +26,48 @@
 
 # In[44]:
 
-# creating a graph
-n=int(input("Enter the number of elemnts:: "))
+# creating a graphn=int(input("Enter the number of elemnts:: "))
 graph=[]
 for i in range(n):
     graph.append(list(map(int,input("enter two elements as space seperated ").split())))
-x=[]                                        # getting list of all vertex
+# print(graph)
+
+# getting all nodes
+x=[]
 for i in graph:
     x.extend(i)
-vertex=list(set(x))
-# print(vertex)
+nodes=list(set(x))
+# print(nodes)
 
-d = {}                                       # creating the graph as a dictionary from the user inout nested list
-for a, b in graph:
-    d.setdefault(a, []).append(b)
-# print(d)
-for v in vertex:
-        if v not in d:
-#             print(v)
-            d[v] = []
-# print(d)
-visited=set()
-root=int(input("enter the root node"))        # starting node for trversing
-def DFS(visited,graph,root):                  # implementing depth-first-search (DFS)
-    
+# creating new graph as dict
+d_graph={}
+for i in range(len(graph)):
+    if graph[i][0] in d_graph.keys():
+        t= graph[i][1]
+        d_graph[graph[i][0]].append(t)
+    else:
+        d_graph.update({graph[i][0]:[graph[i][-1]]})
+# print(d_graph)
+
+# adding left root 
+for i in nodes:
+    if i not in d_graph.keys():
+        d_graph.update({i:[]})
+print(d_graph)
+
+
+# Driver Code
+visited_root = set()
+root=int(input("enter the root node"))   
+def Depth_First_Sesrch(visited,graph, root):
     if root not in visited:
-        print(root,end=' ')
+        print (root,end=' ')
         visited.add(root)
-#         print(visited)
-        for i in set(d[root])-visited:
-            DFS(visited,graph,i) 
-DFS(visited,graph,root)
+        for neighbour in d_graph[root]:
+            Depth_First_Sesrch(visited, graph, neighbour)
+
+
+Depth_First_Sesrch(visited_root,d_graph, root)
 
 
 
