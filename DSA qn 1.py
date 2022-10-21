@@ -60,12 +60,12 @@ for i in nodes:
 # Driver Code
 visited_root = set()
 root=int(input("enter the root node"))   
-def Depth_First_Sesrch(visited,graph, root):
-    if root not in visited:
+def Depth_First_Sesrch(visited_root,graph, root):
+    if root not in visited_root:
         print (root,end=' ')
-        visited.add(root)
+        visited_root.add(root)
         for node in d_graph[root]:
-            Depth_First_Sesrch(visited, graph, node)
+            Depth_First_Sesrch(visited_root, graph, node)
 
 
 Depth_First_Sesrch(visited_root,d_graph, root)
