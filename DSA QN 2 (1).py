@@ -38,6 +38,7 @@ def Pal_subs(i, j, s):
         return ((Pal_subs(i + 1, j, s) + Pal_subs(i, j - 1, s))- Pal_subs(i + 1, j - 1, s))
 def count_Pal_subs(s):
     return Pal_subs(0, len(s) - 1, s)
-count_Pal_subs("abcde")    
+s=input()
+count_Pal_subs(s)    
         
     
