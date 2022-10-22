@@ -27,17 +27,17 @@
 # >For string 'abcdef' palindromic subsequence are : "a" ,"b", "c" ,"d","e","f"
 
 # In[45]:
-def countPsubs(i, j, s):
+def Pal_subs(i, j, s):
     if (i > j):
         return 0
     if (i == j):
         return 1
     elif (s[i] == s[j]):
-        return (1 + countPsubs(i + 1, j, s) + countPsubs(i, j - 1, s))
+        return (1 + Pal_subs(i + 1, j, s) + Pal_subs(i, j - 1, s))
     else:
-        return ((countPsubs(i + 1, j, s) + countPsubs(i, j - 1, s))- countPsubs(i + 1, j - 1, s))
-def countPsubs1(s):
-    return countPsubs(0, len(s) - 1, s)
-countPsubs1("abcde")    
+        return ((Pal_subs(i + 1, j, s) + Pal_subs(i, j - 1, s))- Pal_subs(i + 1, j - 1, s))
+def count_Pal_subs(s):
+    return Pal_subs(0, len(s) - 1, s)
+count_Pal_subs("abcde")    
         
     
